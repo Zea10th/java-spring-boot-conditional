@@ -45,3 +45,8 @@ captures/
 
 ### Gradle ###
 !gradle/wrapper/gradle-wrapper.jar
+
+### Others ###
+.mvn/
+mvnw
+mvnw.cmd
