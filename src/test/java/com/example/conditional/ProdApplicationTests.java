@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
 class ProdApplicationTests {
@@ -27,9 +29,10 @@ class ProdApplicationTests {
     @Test
     void contextLoads() {
         ResponseEntity<String> forEntity = restTemplate.getForEntity(
-                "http://localhost:" + myApp.getMappedPort(PORT), String.class
+                "http://localhost:" + myApp.getMappedPort(PORT) + "/profile", String.class
         );
         System.out.println(forEntity.getBody());
+        assertEquals("Current profile is production", forEntity.getBody());
     }
 
 }
